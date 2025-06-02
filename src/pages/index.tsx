@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
 import Searh from "@/components/Searh";
 
 export default function Home() {

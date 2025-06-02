@@ -8,7 +8,7 @@ import Image from 'next/image'
 const Searh = () => {
 
     const [weather, setWeather] = useState<WeatherData | null>(null)
-    const [error, setError] = useState<String>("")
+    const [error, setError] = useState<string>("")
     const [celSius, setCelSius] = useState(true)
     const [weatherKey, setWeatherKey] = useState(0);
     const [errorKey, setErrorKey] = useState(0)
