@@ -17,3 +17,19 @@ export async function fetchweatherdata (city :string) : Promise<{data?:WeatherDa
         return {}
     }
 }
+
+export async function fetchweatherbycoords (lat: number, lon: number) : Promise<{data?:WeatherData}> {  
+    try{
+        const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`);
+        const data = await res.json();
+
+        if (!res.ok)
+        {
+            return {}
+        }
+        return {data}
+    }catch(error){
+        console.log(error)
+        return {}
+    }
+}

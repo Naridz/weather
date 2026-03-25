@@ -2,43 +2,101 @@
 
 @layer utilities {
   .animate-fadeIn {
-    @apply opacity-0 animate-[fadeIn_0.5s_ease-out_forwards];
+    @apply opacity-0 animate-[fadeIn_0.6s_cubic-bezier(0.16,1,0.3,1)_forwards];
   }
 
   @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: scale(0.95);
+      transform: translateY(20px) scale(0.95);
     }
     to {
       opacity: 1;
-      transform: scale(1);
+      transform: translateY(0) scale(1);
     }
   }
 }
 
 @layer utilities {
   .animate-shakeOnly {
-    @apply animate-[shakeOnly_0.4s_ease];
-
+    @apply animate-[shakeOnly_0.5s_cubic-bezier(0.36,0,0.66,-0.56)];
     animation-fill-mode: forwards;
   }
 
   @keyframes shakeOnly {
-    0% {
-      transform: translateX(0);
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+}
+
+@layer utilities {
+  .animate-slideUp {
+    @apply opacity-0 animate-[slideUp_0.5s_cubic-bezier(0.16,1,0.3,1)_forwards];
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
     }
-    25% {
-      transform: translateX(-5px);
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
-    50% {
-      transform: translateX(5px);
-    }
-    75% {
-      transform: translateX(-5px);
-    }
-    100% {
-      transform: translateX(0);
-    }
+  }
+}
+
+@layer utilities {
+  .animate-pulse-slow {
+    @apply animate-[pulseSlow_3s_ease-in-out_infinite];
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)];
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .btn-glow {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-500;
+  }
+
+  .btn-glow:hover::before {
+    @apply translate-x-full;
+  }
+}
+
+@layer base {
+  body {
+    @apply antialiased;
   }
 }
